@@ -37,6 +37,7 @@ const App = () => {
     }, 5000);
   }
   const addNew = (anecdote) => {
+    console.log('in addnew Func',anecdote)
     anecdote.id = Math.round(Math.random() * 10000)
     setAnecdotes(anecdotes.concat(anecdote))
     notifier(anecdote)
