@@ -1,14 +1,10 @@
 import { useField } from "../hooks/index";
 import { useNavigate } from "react-router-dom";
 const CreateNew = (props) => {
-  // const [content, setContent] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [info, setInfo] = useState('')
   const content = useField('content')
   const author = useField('author')
   const info = useField('info')
   const navigate = useNavigate()
-
   const handleSubmit = (e) => {
     const submitCont = e.target.content.value
     const submitAuth = e.target.author.value
@@ -20,12 +16,16 @@ const CreateNew = (props) => {
       info: submitInfo,
       votes: 0
     })
-    // setContent('')
-    // setAuthor('')
-    // setInfo('')
     navigate('/')
   }
+  const resetValue = (e) => {
+    e.preventDefault()
+    console.log('hit reset values')
+    content.reset()
+    author.reset()
+    info.reset()
 
+  }
   return (
     <div>
       <h2>create a new anecdote</h2>
@@ -43,10 +43,10 @@ const CreateNew = (props) => {
           <input name={info.name} value={info.value} onChange={info.onChange} />
         </div>
         <button>create</button>
+        <button onClick={resetValue}>reset</button>
       </form>
     </div>
   )
-
 }
 
 export default CreateNew

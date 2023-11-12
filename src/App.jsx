@@ -26,7 +26,7 @@ const App = () => {
     }
   ])
 
-  const [notification, setNotification] = useState('nostalgia is poison for the mind')
+  const [notification, setNotification] = useState('')
 
   const notifier = (anecdote) =>{
     setNotification(`a new anecdote ${anecdote.content} created!`)
