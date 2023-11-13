@@ -1,9 +1,19 @@
-import { useField } from "../hooks/index";
+import { useField } from "../hooks/hook";
 import { useNavigate } from "react-router-dom";
 const CreateNew = (props) => {
   const content = useField('content')
   const author = useField('author')
   const info = useField('info')
+  const {reset: conReset, ...conMod} = content
+  console.log(conMod)
+  console.log(conReset)
+  const {reset: authReset, ...authMod} = author
+  console.log(authMod)
+  console.log(authReset)
+  const {reset: infoReset, ...infoMod} = info
+  console.log(infoMod)
+  console.log(infoReset)
+
   const navigate = useNavigate()
   const handleSubmit = (e) => {
     const submitCont = e.target.content.value
@@ -21,10 +31,9 @@ const CreateNew = (props) => {
   const resetValue = (e) => {
     e.preventDefault()
     console.log('hit reset values')
-    content.reset()
-    author.reset()
-    info.reset()
-
+    conReset()
+    authReset()
+    infoReset()
   }
   return (
     <div>
@@ -32,15 +41,15 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name={content.name} value={content.value} onChange={content.onChange} />
+          <input {...conMod} />
         </div>
         <div>
           author
-          <input name={author.name} value={author.value} onChange={author.onChange} />
+          <input {...authMod} />
         </div>
         <div>
           url for more info
-          <input name={info.name} value={info.value} onChange={info.onChange} />
+          <input {...infoMod} />
         </div>
         <button>create</button>
         <button onClick={resetValue}>reset</button>
